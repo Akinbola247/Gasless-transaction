@@ -1,0 +1,4 @@
+SwapperTest:testAddDAILiquidity() (gas: 882552)
+SwapperTest:testAddLINKLiquidity() (gas: 899422)
+SwapperTest:testswapDAIforLINK() (gas: 1015460)
+SwapperTest:testswapLINKforDai() (gas: 1773851)

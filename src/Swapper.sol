@@ -18,13 +18,16 @@ address[] DAIliquidityProviders;
 mapping(address => uint) LINKliquidityProvider;
 address[] LINKliquidityProviders;
 
-constructor(address trustedForwarder)ERC2771Context(address(trustedForwarder)){
+constructor(address trustedForwarder)ERC2771Context(trustedForwarder){
 
-    DAI = IERC20(0x6B175474E89094C44Da98b954EedeAC495271d0F);  //18 decimals
-    LINK = IERC20(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48); //18 decimals
+    DAI = IERC20(0xf2edF1c091f683E3fb452497d9a98A49cBA84666);  //18 decimals
+    LINK = IERC20(0x5646927512a016Fc181D541ed60AF991122E7413); //18 decimals
 
 DAIusdpriceFeed = AggregatorV3Interface(0x0d79df66BE487753B02D015Fb622DED7f0E9798d); 
-LINKusdpriceFeed = AggregatorV3Interface(0xAb5c49580294Aff77670F839ea425f5b78ab3Ae7); 
+LINKusdpriceFeed = AggregatorV3Interface(0xAb5c49580294Aff77670F839ea425f5b78ab3Ae7); //goerli
+
+// DAIusdpriceFeed = AggregatorV3Interface(0xAed0c38402a5d19df6E4c03F4E2DceD6e29c1ee9); 
+// LINKusdpriceFeed = AggregatorV3Interface(0x8fFfFfd4AfB6115b954Bd326cbe7B4BA576818f6);
 }
 
 function AddDAILiquidity(uint _amount)external  {
@@ -35,22 +38,25 @@ function AddDAILiquidity(uint _amount)external  {
 }
 
 function removeDAIliquidity() public {
-    uint liq = DAIliquidityProvider[_msgSender()];
+    address sender = _msgSender();
+    uint liq = DAIliquidityProvider[sender];
     require(liq != 0, "no balance");
-    DAI.transferFrom(address(this), _msgSender(), liq);
+    DAI.transferFrom(address(this), sender, liq);
 }
 
 function removeLINKliquidity() public {
-    uint liq = LINKliquidityProvider[_msgSender()];
+    address sender = _msgSender();
+    uint liq = LINKliquidityProvider[sender];
     require(liq != 0, "no balance");
-    LINK.transferFrom(address(this), _msgSender(), liq);
+    LINK.transferFrom(address(this), sender, liq);
 }
 
 
 function AddLINKLiquidity(uint _amount)external {
-    LINK.transferFrom(_msgSender(), address(this), (_amount));
-    LINKliquidityProvider[_msgSender()] += _amount;
-    LINKliquidityProviders.push(_msgSender());
+    address sender = _msgSender();
+    LINK.transferFrom(sender, address(this), (_amount));
+    LINKliquidityProvider[sender] += _amount;
+    LINKliquidityProviders.push(sender);
 }
 
 
@@ -65,7 +71,7 @@ function getLINKUSDPrice() public view returns (uint) {
 
 function swapLINKforDai(uint LINK_amount) public {
     address receiver = _msgSender();
-    LINK.transferFrom(_msgSender(), address(this), LINK_amount);
+    LINK.transferFrom(receiver, address(this), LINK_amount);
     uint LINKPrice = getLINKUSDPrice();
     uint daiPrice = getDAIUSDPrice();
     uint swappedAmount = (LINKPrice * LINK_amount)/daiPrice ;
@@ -77,7 +83,7 @@ function swapLINKforDai(uint LINK_amount) public {
 
 function swapDAIforLINK(uint dai_amount) external {
     address receiver = _msgSender();
-    DAI.transferFrom(_msgSender(), address(this), dai_amount);
+    DAI.transferFrom(receiver, address(this), dai_amount);
     uint LINKPrice = getLINKUSDPrice();
     uint daiPrice = getDAIUSDPrice();
     uint swappedAmount = (daiPrice * dai_amount)/LINKPrice;

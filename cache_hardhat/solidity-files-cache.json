@@ -1,10 +1,10 @@
 {
   "_format": "hh-sol-cache-2",
   "files": {
-    "/Users/kenzman/Desktop/code/Solidity/relayer_task/src/Counter.sol": {
-      "lastModificationDate": 1679941190212,
-      "contentHash": "ae6c800a2b4c57768024d6e9423d39e8",
-      "sourceName": "src/Counter.sol",
+    "/Users/kenzman/Desktop/code/Solidity/relayer_task/src/Swapper.sol": {
+      "lastModificationDate": 1680109421995,
+      "contentHash": "3840c1946492147c434f6da0020220d9",
+      "sourceName": "src/Swapper.sol",
       "solcConfig": {
         "version": "0.8.18",
         "settings": {
@@ -27,18 +27,310 @@
             }
           },
           "remappings": [
+            "chainlink/=lib/chainlink/",
             "ds-test/=lib/forge-std/lib/ds-test/src/",
-            "forge-std/=lib/forge-std/src/"
+            "forge-std/=lib/forge-std/src/",
+            "openzeppelin-contracts/=lib/openzeppelin-contracts/"
+          ]
+        }
+      },
+      "imports": [
+        "lib/chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol",
+        "lib/openzeppelin-contracts/contracts/utils/math/SafeCast.sol",
+        "lib/openzeppelin-contracts/contracts/interfaces/IERC20.sol",
+        "lib/openzeppelin-contracts/contracts/metatx/ERC2771Context.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.13"
+      ],
+      "artifacts": [
+        "Swapper"
+      ]
+    },
+    "/Users/kenzman/Desktop/code/Solidity/relayer_task/lib/openzeppelin-contracts/contracts/interfaces/IERC20.sol": {
+      "lastModificationDate": 1679942824636,
+      "contentHash": "d151fbfe7939989b9acf22797b32058b",
+      "sourceName": "lib/openzeppelin-contracts/contracts/interfaces/IERC20.sol",
+      "solcConfig": {
+        "version": "0.8.18",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "remappings": [
+            "chainlink/=lib/chainlink/",
+            "ds-test/=lib/forge-std/lib/ds-test/src/",
+            "forge-std/=lib/forge-std/src/",
+            "openzeppelin-contracts/=lib/openzeppelin-contracts/"
+          ]
+        }
+      },
+      "imports": [
+        "../token/ERC20/IERC20.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": []
+    },
+    "/Users/kenzman/Desktop/code/Solidity/relayer_task/lib/chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol": {
+      "lastModificationDate": 1679942758619,
+      "contentHash": "d9654a0fc044a31d4106ee6bca772add",
+      "sourceName": "lib/chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol",
+      "solcConfig": {
+        "version": "0.8.18",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "remappings": [
+            "chainlink/=lib/chainlink/",
+            "ds-test/=lib/forge-std/lib/ds-test/src/",
+            "forge-std/=lib/forge-std/src/",
+            "openzeppelin-contracts/=lib/openzeppelin-contracts/"
           ]
         }
       },
       "imports": [],
       "versionPragmas": [
-        "^0.8.13"
+        "^0.8.0"
       ],
       "artifacts": [
-        "Counter"
+        "AggregatorV3Interface"
       ]
+    },
+    "/Users/kenzman/Desktop/code/Solidity/relayer_task/lib/openzeppelin-contracts/contracts/metatx/ERC2771Context.sol": {
+      "lastModificationDate": 1680033357254,
+      "contentHash": "152381ff7de2d58dd817c5dbdec701b3",
+      "sourceName": "lib/openzeppelin-contracts/contracts/metatx/ERC2771Context.sol",
+      "solcConfig": {
+        "version": "0.8.18",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "remappings": [
+            "chainlink/=lib/chainlink/",
+            "ds-test/=lib/forge-std/lib/ds-test/src/",
+            "forge-std/=lib/forge-std/src/",
+            "openzeppelin-contracts/=lib/openzeppelin-contracts/"
+          ]
+        }
+      },
+      "imports": [
+        "../utils/Context.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.9"
+      ],
+      "artifacts": [
+        "ERC2771Context"
+      ]
+    },
+    "/Users/kenzman/Desktop/code/Solidity/relayer_task/lib/openzeppelin-contracts/contracts/utils/math/SafeCast.sol": {
+      "lastModificationDate": 1679942824701,
+      "contentHash": "67cf2dfe1d1c22b4ea7f242e8a17f431",
+      "sourceName": "lib/openzeppelin-contracts/contracts/utils/math/SafeCast.sol",
+      "solcConfig": {
+        "version": "0.8.18",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "remappings": [
+            "chainlink/=lib/chainlink/",
+            "ds-test/=lib/forge-std/lib/ds-test/src/",
+            "forge-std/=lib/forge-std/src/",
+            "openzeppelin-contracts/=lib/openzeppelin-contracts/"
+          ]
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "SafeCast"
+      ]
+    },
+    "/Users/kenzman/Desktop/code/Solidity/relayer_task/lib/openzeppelin-contracts/contracts/token/ERC20/IERC20.sol": {
+      "lastModificationDate": 1679942832861,
+      "contentHash": "ad7c2d0af148c8f9f097d65deeb4da6b",
+      "sourceName": "lib/openzeppelin-contracts/contracts/token/ERC20/IERC20.sol",
+      "solcConfig": {
+        "version": "0.8.18",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "remappings": [
+            "chainlink/=lib/chainlink/",
+            "ds-test/=lib/forge-std/lib/ds-test/src/",
+            "forge-std/=lib/forge-std/src/",
+            "openzeppelin-contracts/=lib/openzeppelin-contracts/"
+          ]
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IERC20"
+      ]
+    },
+    "/Users/kenzman/Desktop/code/Solidity/relayer_task/lib/openzeppelin-contracts/contracts/utils/Context.sol": {
+      "lastModificationDate": 1679942824694,
+      "contentHash": "5f2c5c4b6af2dd4551027144797bc8be",
+      "sourceName": "lib/openzeppelin-contracts/contracts/utils/Context.sol",
+      "solcConfig": {
+        "version": "0.8.18",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "remappings": [
+            "chainlink/=lib/chainlink/",
+            "ds-test/=lib/forge-std/lib/ds-test/src/",
+            "forge-std/=lib/forge-std/src/",
+            "openzeppelin-contracts/=lib/openzeppelin-contracts/"
+          ]
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Context"
+      ]
+    },
+    "/Users/kenzman/Desktop/code/Solidity/relayer_task/src/iSwapper.sol": {
+      "lastModificationDate": 1680111044864,
+      "contentHash": "d41d8cd98f00b204e9800998ecf8427e",
+      "sourceName": "src/iSwapper.sol",
+      "solcConfig": {
+        "version": "0.8.18",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "remappings": [
+            "chainlink/=lib/chainlink/",
+            "ds-test/=lib/forge-std/lib/ds-test/src/",
+            "forge-std/=lib/forge-std/src/",
+            "openzeppelin-contracts/=lib/openzeppelin-contracts/"
+          ]
+        }
+      },
+      "imports": [],
+      "versionPragmas": [],
+      "artifacts": []
     }
   }
 }

@@ -12,7 +12,7 @@ contract SwapperTest is Test {
 
     function setUp() public {
          vm.startPrank(0xBB9F947cB5b21292DE59EFB0b1e158e90859dddb);
-        uint mainnet = vm.createFork("", 16927792);
+        uint mainnet = vm.createFork("https://eth-mainnet.g.alchemy.com/v2/xypdsCZYrlk6oNi93UmpUzKE9kmxHy2n", 16927792);
         vm.selectFork(mainnet);
         swapper = new Swapper(address(0xE041608922d06a4F26C0d4c27d8bCD01daf1f792));
         vm.stopPrank();
@@ -40,7 +40,7 @@ contract SwapperTest is Test {
         testAddDAILiquidity();
         vm.startPrank(0xDBe9fD53D3e2EfF2300A76033b78Fd458ec2A1E6);
         LINK.approve(address(swapper), 5 ether);
-        swapper.swapLINKforDai(1000);
+        swapper.swapLINKforDai(10);
         vm.stopPrank();
     }
 
@@ -48,7 +48,23 @@ contract SwapperTest is Test {
         testAddLINKLiquidity();
         vm.startPrank(0x748dE14197922c4Ae258c7939C7739f3ff1db573);
         DAI.approve(address(swapper), 5 ether);
-        swapper.swapDAIforLINK(1000);
+        swapper.swapDAIforLINK(10);
+        vm.stopPrank();
+    }
+
+    function testRemoveDaiLiq() public {
+            testAddDAILiquidity();
+            vm.startPrank(0xDBe9fD53D3e2EfF2300A76033b78Fd458ec2A1E6);
+            DAI.approve(address(swapper), 5 ether);
+            swapper.removeDAIliquidity();
+            vm.stopPrank();
+    }
+
+    function testRemoveLinkliq() public {
+        testAddLINKLiquidity();
+        vm.startPrank(0xDBe9fD53D3e2EfF2300A76033b78Fd458ec2A1E6);
+        LINK.approve(address(swapper), 5 ether);
+        swapper.removeLINKliquidity();
         vm.stopPrank();
     }
 }
